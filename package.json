@@ -1,8 +1,8 @@
 {
-  "name": "sails",
+  "name": "Sails/React",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "a Sails/React application",
   "keywords": [],
   "dependencies": {
     "ejs": "~0.8.4",
@@ -25,8 +25,7 @@
     "babel": "^4.7.16",
     "babel-core": "^4.7.16",
     "babel-loader": "^4.2.0",
-    "babel-runtime": "^4.7.16",
-    "react": "*"
+    "babel-runtime": "^4.7.16"
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -40,6 +39,8 @@
   "author": "anonymous node/sails user",
   "license": "",
   "devDependencies": {
-    "babelify": "^6.3.0"
+    "babelify": "^6.3.0",
+    "flux": "^2.1.1",
+    "react": "*"
   }
 }

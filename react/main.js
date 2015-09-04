@@ -1,4 +1,12 @@
 var React       = require('react');
-var HelloWorld  = require('./components/HelloWorld.react.js');
+var App         = require('./App.react');
 
-React.render(<HelloWorld />, document.getElementById('react-root'));
+var route = {
+  pathname: window.location.pathname,
+  search: window.location.search
+};
+
+React.render(
+  <App route={route} />, 
+  document.getElementById('react-root')
+);

@@ -32,7 +32,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /': 'HelloWorldController.get'
+  'GET /*': {
+    controller: 'ReactController',
+    action: 'get',
+    skipAssets: true
+  }
 
   /***************************************************************************
   *                                                                          *
@@ -43,5 +47,4 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
 };

@@ -80,6 +80,7 @@ bower_components
 ################################################
 .tmp
 dump.rdb
+assets/bundle.js
 
 
 
@@ -116,3 +117,4 @@ npm-debug.log
 nbproject
 .idea
 .node_history
+
