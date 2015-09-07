@@ -1,5 +1,5 @@
 var React       = require('react');
-var App         = require('./App.react');
+var App         = require('./components/App.react');
 
 var route = {
   pathname: window.location.pathname,
