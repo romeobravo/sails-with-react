@@ -1,18 +1,26 @@
+/* React */
 var React      = require('react');
+
+/* Stores */
+var UserStore = require('../stores/UserStore');
+
+/* Components */
 var HelloWorld = require('./HelloWorld.react');
 
+
 var App = React.createClass({
-  getInitialState: function() {
-    return { route: this.props.route.pathname };
+
+  getInitialState() {
+    return { route: this.props.route };
   },
-  componentDidMount: function() {
+  componentDidMount() {
 
   },
-  render: function() {
+  render() {
     return (
       <div>
-        <HelloWorld />
-        <span>{this.state.route.pathname}</span>
+        <span>App</span>
+        {this.props.children}
       </div>
     );
   }

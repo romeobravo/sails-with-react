@@ -32,12 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /*': {
-    controller: 'ReactController',
-    action: 'get',
-    skipAssets: true
-  }
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -47,4 +41,20 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  'GET    /api/user/:id' : 'Users.find',
+  'POST   /api/user'     : 'Users.create',
+  'PUT    /api/user/:id' : 'Users.update',
+  'DELETE /api/user/:id' : 'Users.destroy',
+
+  'GET /api/*' : {
+    response: 'notFound'
+  },
+
+  'GET /*': {
+    controller: 'ReactController',
+    action: 'get',
+    skipAssets: true
+  }
+
 };

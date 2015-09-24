@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 
 var tasks = [
   'clean',
@@ -16,7 +15,7 @@ tasks.forEach(function(task) {
 });
 
 gulp.task('default', [
-  'react', 
+  'react',
   'javascript',
   'images',
   'static',

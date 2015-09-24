@@ -1,0 +1,4 @@
+module.exports = {
+  APP_LOGIN: 'APP_LOGIN',
+  APP_CHANGE_ROUTE: 'APP_CHANGE_ROUTE'
+};

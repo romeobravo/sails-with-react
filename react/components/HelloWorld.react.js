@@ -1,23 +1,26 @@
 var React = require('react');
 
+var LogIn = require('./forms/LogIn.react')
+
 var HelloWorld = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {secondsElapsed: 0};
   },
-  tick: function() {
+  tick() {
     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.interval = setInterval(this.tick, 1000);
   },
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     clearInterval(this.interval);
   },
-  render: function() {
+  render() {
     return (
       <div>
         <h2>Hello World</h2>
         <div>Alive for: {this.state.secondsElapsed} seconds</div>
+        <LogIn />
       </div>
     );
   }
