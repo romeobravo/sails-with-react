@@ -12,7 +12,7 @@ module.exports = function(gulp) {
   gulp.task('react', function() {
     var stream = browserify('./react/main.react.js')
       .transform(babelify)
-      .transform(uglify)
+      // .transform(uglify)
       .bundle()
       .on('error', function(err) {
         gutil.log(err);

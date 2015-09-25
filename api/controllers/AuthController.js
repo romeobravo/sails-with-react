@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-  index: function (req, res) {
-    var email = req.param('email');
-    var password = req.param('password');
+  authenticate: function (req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
 
     if (!email || !password) {
       return res.json(401, {err: 'email and password required'});
@@ -27,9 +27,9 @@ module.exports = {
         if (!valid) {
           return res.json(401, {err: 'invalid email or password'});
         } else {
-          res.json({
+          return res.json({
             user: user,
-            token: jwToken.issue({id : user.id })
+            token: jwt.issue({id : user.id })
           });
         }
       });

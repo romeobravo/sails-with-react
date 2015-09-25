@@ -1,7 +1,7 @@
 var React = require('react');
 var cx    = require('classnames');
 
-var Email = React.createClass({
+var password = React.createClass({
   getInitialState() {
     return {
       value: "",
@@ -9,7 +9,7 @@ var Email = React.createClass({
     }
   },
   validate(value) {
-    var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,20}/i;
+    var regex = /.{6,1024}/i;
     var valid = regex.test(value) ? true : false;
     var state = {};
     state[this.props.name] = { value, valid };
@@ -21,13 +21,13 @@ var Email = React.createClass({
   render() {
     var classes = cx({
       input: true,
-      email: true,
+      password: true,
       valid: this.props.valid
     });
     return (
-      <input onChange={this.handleChange} className={classes} type="text" value={this.props.value}/>
+      <input onChange={this.handleChange} className={classes} type="password" value={this.props.value}/>
     );
   }
 });
 
-module.exports = Email;
+module.exports = password;

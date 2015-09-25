@@ -7,13 +7,11 @@
 
 var jwt = require('jsonwebtoken');
 
-var tokenSecret = "secretissecet";
-
 // Generates a token from supplied payload
 module.exports.issue = function(payload) {
   return jwt.sign(
     payload,
-    tokenSecret, // Token Secret that we sign it with
+    sails.config.jwtSecret, // Token Secret that we sign it with
     {
       expiresInMinutes : 180 // Token Expire time
     }
@@ -24,7 +22,7 @@ module.exports.issue = function(payload) {
 module.exports.verify = function(token, callback) {
   return jwt.verify(
     token, // The token to be verified
-    tokenSecret, // Same token we used to sign
+    sails.config.jwtSecret, // Same token we used to sign
     {}, // No Option, for more see https://github.com/auth0/node-jsonwebtoken#jwtverifytoken-secretorpublickey-options-callback
     callback //Pass errors or decoded token to callback
   );

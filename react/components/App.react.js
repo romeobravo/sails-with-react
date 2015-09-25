@@ -19,7 +19,8 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <span>App</span>
+        <a href="/">App</a><br/>
+        <a href="/login">Login</a>
         {this.props.children}
       </div>
     );

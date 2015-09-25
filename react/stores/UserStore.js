@@ -3,12 +3,16 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants = require('../constants/Constants');
+var URL = require('../constants/URL');
 
 var _user = 'abc';
 
 var CHANGE_EVENT = 'change';
 
 function login(data) {
+  io.socket.post(URL.LOGIN, data, function(res, jwres) {
+    console.log(res, jwres);
+  });
   _user = data.email;
   UserStore.emitChange();
 }

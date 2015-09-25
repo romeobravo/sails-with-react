@@ -1,73 +1,53 @@
 var React = require('react');
 
-function addToPath(path, string) {
-  var arr = string.split('/');
-  return path.concat(arr);
-}
-
-function matchPart(routePart, pathPart) {
-  if(pathPart[0] == ':') {
-    // parameter
-    return true
-  } else if(routePart == pathPart) {
-    return true
-  } else {
-    return true
-  }
-}
-
-function match(route, path) {
-  if(route.length != path.length) {
-    return false;
-  }
-  for(var i = 0; i < route.length; i++) {
-    if(!matchPart(route[i], path[i])) {
+function find(node, path) {
+  var chain;
+  for(var edge in path) {
+    if(node.children[path[edge]]) {
+      node = node.children[path[edge]];
+    } else {
       return false;
     }
   }
-  return true;
+  return node;
 }
 
-function find(node, route, path) {
-  var res = {
-    match: false
-  };
-  for(var child in node.children) {
-    if(!node.children.hasOwnProperty(child) || res.match) {
-      continue;
+function buildChain(root, node) {
+  var chain = React.createElement(node.component);
+  while(root != node) {
+    node = node.parent
+    chain = React.createElement(node.component, {}, chain);
+  }
+  return chain;
+}
+
+function formatRoute(route) {
+  if(route[route.length-1] == '/') {
+    route = route.substring(0, route.length - 1);
+  }
+  route = route ? route.substring(1).split('/') : [];
+  return route;
+}
+
+function enhanceRoutes(routes) {
+  if(routes.children) {
+    for(var i in routes.children) {
+      routes.children[i].parent = routes;
+      routes.children[i] = enhanceRoutes(routes.children[i]);
     }
-    path = addToPath(path, child);
-    res = find(node.children[child], route, path);
-    path.pop();
   }
-  if(res.match) {
-    return {
-      match: true,
-      component: React.createElement(node.component, {}, res.component)
-    };
-  } else if(match(route, path)) {
-    return {
-      match: true,
-      component: React.createElement(node.component)
-    };
-  } else {
-    return {
-      match: false
-    };
-  }
+  return routes
 }
 
 var router = {
   init(settings) {
-    var self = this;
-    self.routes = settings.routes;
+    this.routes = enhanceRoutes(settings.routes);
   },
   run(route) {
-    route = route.substring(1).split('/');
-    var root = this.routes['/'];
-    var path = [];
-    var chain = find(root, route, path);
-    return chain.component;
+    route = formatRoute(route);
+    var leaf = find(this.routes, route);
+    var chain = buildChain(this.routes, leaf);
+    return chain;
   }
 };
 

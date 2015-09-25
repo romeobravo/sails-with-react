@@ -21,4 +21,6 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
+  jwtSecret: "secretissecet"
+
 };

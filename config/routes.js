@@ -47,6 +47,8 @@ module.exports.routes = {
   'PUT    /api/user/:id' : 'Users.update',
   'DELETE /api/user/:id' : 'Users.destroy',
 
+  'POST   /api/authenticate' : 'Auth.authenticate',
+
   'GET /api/*' : {
     response: 'notFound'
   },

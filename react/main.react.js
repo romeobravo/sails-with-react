@@ -10,12 +10,16 @@ var router = require('./lib/router');
 var pathfinder = require('./lib/pathfinder');
 
 RouteStore.on('change', function() {
-  React.render(router.run(RouteStore.get()), document.getElementById('react-root'));
+  React.render(
+    router.run(RouteStore.get()),
+    document.getElementById('react-root')
+  );
 });
 
 router.init({
-  routes: routes
+  routes
 });
+
 
 pathfinder.init({
   action: Actions.changeRoute,
